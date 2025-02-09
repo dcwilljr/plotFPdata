@@ -1,0 +1,16 @@
+# List of sample names and parameters for fitting in plot_FPdata_pn.ipynb
+# 
+# Input as comma-separated fields 
+#   name = name of the sample
+#   number = number of data points for that sample
+#   start = start of data for that sample (integer, as in Sample X2 = 2), assumes consecutive
+#   dil-factor = dilution factor, assumes dilution continues to the end
+#   fluor-conc = labeled protein concentration, fixed
+#   type = experiment type (bind = simple binding experiment, or inhib = competitive inhibition)
+#   units = units for input values, all values should be entered in the same units
+#
+# name,number,start,conc,dil-factor,fluoro-conc,type,[Kd1, Mt,]units
+Sample #1, 14, 3, 1250, 2, 20, bind, nM
+Sample #2, 16, 17, 100, 2, 0.02, bind, μM
+Sample #3, 16, 33, 100, 2, 0.02, bind, μM
+Sample #4, 16, 49, 20000, 2, 20, inhib, 150, 100, nM

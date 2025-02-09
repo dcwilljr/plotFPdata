@@ -1,0 +1,13 @@
+derivative
+ipywidgets>8
+jupyter_ui_poll
+kaleido
+matplotlib
+numpy
+openpyxl
+pandas
+plotly
+pathlib
+scipy
+panel
+jupyter_bokeh
