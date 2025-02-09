@@ -20,17 +20,17 @@ def read_fp_excelfile(filename, skip_row, cols):
     return(data)
 
 ### Extracting data from specified files
-def setup_samples(samples_filename, num_samples):
+def setup_exps(exps_filename, num_exps):
     import pandas as pd
     fit_param_dict = {}
-    if samples_filename != "Default":
-        with open(samples_filename) as file:
+    if exps_filename != "Default":
+        with open(exps_filename) as file:
                 for line in file.readlines():
                     if not line.strip().startswith('#'):
                         fit_params = line.strip().split(',')
                         for i in range(len(fit_params)):
                             fit_params[i] = fit_params[i].strip(' ')
-                        fit_param_dict.setdefault("Sample",[]).append(fit_params[0])
+                        fit_param_dict.setdefault("Exp",[]).append(fit_params[0])
                         fit_param_dict.setdefault("points",[]).append(int(fit_params[1]))
                         fit_param_dict.setdefault("start",[]).append(int(fit_params[2]))
                         fit_param_dict.setdefault("[titrant]",[]).append(float(fit_params[3]))
@@ -47,9 +47,9 @@ def setup_samples(samples_filename, num_samples):
                             fit_param_dict.setdefault("Mt",[]).append(0.0)
                             fit_param_dict.setdefault("units",[]).append(fit_params[7])
 
-    if samples_filename == "Default":
-        for i in range(num_samples):
-            fit_param_dict.setdefault("Sample",[]).append("Sample #" + str(i+1))
+    if exps_filename == "Default":
+        for i in range(num_exps):
+            fit_param_dict.setdefault("Exp",[]).append("Experiment #" + str(i+1))
             fit_param_dict.setdefault("points",[]).append(int(16))
             fit_param_dict.setdefault("start",[]).append(int(i*16 + 1))
             fit_param_dict.setdefault("[titrant]",[]).append(float(100))
@@ -74,7 +74,7 @@ def combine_data(avg_data, fit_param_df):
     data_combined = []
 
     for n in range(len(fit_param_df)):
-        name = fit_param_df["Sample"].iloc[n]
+        name = fit_param_df["Exp"].iloc[n]
         num_points = int(fit_param_df["points"].iloc[n])
         index_start = int(fit_param_df["start"].iloc[n])
         titrant_conc = float(fit_param_df["[titrant]"].iloc[n])
@@ -431,7 +431,7 @@ def pltly_table(data,out_params):
     
     fig = go.Figure(data=[go.Table(
         columnwidth = [200,100],
-        header=dict(values=['Sample', 'Kd', 'dmax', 'dmin'],
+        header=dict(values=['Exp', 'Kd', 'dmax', 'dmin'],
                     line_color='darkslategray',
                     fill_color=headerColor,
                     align=['left','center'], # 'center',
@@ -457,7 +457,7 @@ def create_table(data,out_params):
     table_dict = {}
     ind = []
     for i in range(len(data)):
-        table_dict.setdefault("Sample",[]).append(data[i][0])
+        table_dict.setdefault("Exp",[]).append(data[i][0])
         table_dict.setdefault("Kd",[]).append('{:.2f} ± {:.2f} {}'.format(out_params[i]['Kd'], out_params[i]['Kd_err'], data[i][8]))
         table_dict.setdefault("FPmax",[]).append('{:.2f} ± {:.2f}'.format(out_params[i]['dmax'], out_params[i]['dmax_err']))
         table_dict.setdefault("FPmin",[]).append('{:.2f} ± {:.2f}'.format(out_params[i]['dmin'], out_params[i]['dmin_err']))
