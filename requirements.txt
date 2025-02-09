@@ -4,6 +4,8 @@
 #
 #    pip-compile requirements.in
 #
+asteval==1.0.6
+    # via lmfit
 asttokens==3.0.0
     # via stack-data
 bleach==6.2.0
@@ -28,6 +30,8 @@ decorator==5.1.1
     # via ipython
 derivative==0.6.3
     # via -r requirements.in
+dill==0.3.9
+    # via lmfit
 et-xmlfile==2.0.0
     # via openpyxl
 executing==2.2.0
@@ -64,6 +68,8 @@ kiwisolver==1.4.8
     # via matplotlib
 linkify-it-py==2.0.3
     # via panel
+lmfit==1.3.2
+    # via -r requirements.in
 markdown==3.7
     # via panel
 markdown-it-py==3.0.0
@@ -88,6 +94,7 @@ numpy==2.2.2
     #   bokeh
     #   contourpy
     #   derivative
+    #   lmfit
     #   matplotlib
     #   pandas
     #   scikit-learn
@@ -151,6 +158,7 @@ scipy==1.15.1
     # via
     #   -r requirements.in
     #   derivative
+    #   lmfit
     #   scikit-learn
 six==1.17.0
     # via python-dateutil
@@ -174,6 +182,8 @@ tzdata==2025.1
     # via pandas
 uc-micro-py==1.0.3
     # via linkify-it-py
+uncertainties==3.2.2
+    # via lmfit
 urllib3==2.3.0
     # via requests
 wcwidth==0.2.13

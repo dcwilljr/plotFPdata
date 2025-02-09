@@ -11,3 +11,4 @@ pathlib
 scipy
 panel
 jupyter_bokeh
+lmfit
